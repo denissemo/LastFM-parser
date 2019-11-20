@@ -3,7 +3,7 @@
 const express = require("express");
 const morgan = require("morgan");  // request logger
 const path = require('path');
-const MongoClient = require("mongodb").MongoClient;
+// const MongoClient = require("mongodb").MongoClient;
 
 
 const app = express();  // main app
@@ -16,19 +16,23 @@ app.use(morgan("dev"));
 const jsonParser = express.json();
 
 // Connect to MongoDb
-const mongoClient = new MongoClient("mongodb://localhost:27017/", {useNewUrlParser: true});
+// const mongoClient = new MongoClient("mongodb://localhost:27017/", {useNewUrlParser: true});
 let dbClient;
 
 app.use(express.static(__dirname + "/public"));
 
 
-mongoClient.connect(function (err, client) {
-    if (err) return console.log(err);
-    dbClient = client;
-    app.locals.collection = client.db("tracks").collection("users");
-    app.listen(3000, function () {
-        console.log("Server started on localhost:3000");
-    });
+// mongoClient.connect(function (err, client) {
+    // if (err) return console.log(err);
+//     dbClient = client;
+//     app.locals.collection = client.db("tracks").collection("users");
+//     app.listen(3000, function () {
+//         console.log("Server started on localhost:3000");
+//     });
+// });
+
+app.listen(3001, function () {
+    console.log("Server started on localhost:3000");
 });
 
 app.get("/tracks", function (request, response) {
